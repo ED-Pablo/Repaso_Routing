@@ -6,30 +6,31 @@ const routes: Routes = [
   {
     path: 'tabs',
     component: TabsPage,
-    children: [
-      {
-        path: 'tab1',
-        loadChildren: () => import('../tab1/tab1.module').then(m => m.Tab1PageModule)
+    children: [    
+      {//Instaciar la página hija inicio
+        path:"inicio",
+        loadChildren: ()=>import("./inicio/inicio.module").then(vista=>vista.InicioPageModule)
       },
-      {
-        path: 'tab2',
-        loadChildren: () => import('../tab2/tab2.module').then(m => m.Tab2PageModule)
+      {//Instaciar la página hija nudo
+        path:"nudo",
+        loadChildren: ()=>import("./nudo/nudo.module").then(vista=>vista.NudoPageModule)
       },
-      {
-        path: 'tab3',
-        loadChildren: () => import('../tab3/tab3.module').then(m => m.Tab3PageModule)
+      {//Instaciar la página hija desenlace
+        path:"desenlace",
+        loadChildren: ()=>import("./desenlace/desenlace.module").then(vista=>vista.DesenlacePageModule)
       },
-      {
-        path: '',
-        redirectTo: '/tabs/tab1',
-        pathMatch: 'full'
-      }
+      {//Por defeceto abrir inicio
+        path:"",
+        redirectTo:"inicio",
+        pathMatch:"full"
+      },
+      
     ]
   },
-  {
-    path: '',
-    redirectTo: '/tabs/tab1',
-    pathMatch: 'full'
+  {//Por defecto abrir padre tabs
+    path:"",
+    redirectTo:"tabs",
+    pathMatch:"full" 
   }
 ];
 
